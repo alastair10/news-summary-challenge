@@ -1,10 +1,10 @@
 class NewsModel {
   constructor() {
-    this.articleInfo = null;
+    this.articleInfo = [];
   }
 
   setArticleInfo(articleInfo) {
-    this.articleInfo = articleInfo;
+    this.articleInfo = articleInfo.response.results;
   }
 
   getArticleInfo() {
