@@ -3,36 +3,28 @@
  */
 
 const fs = require('fs');
-const NewsView = require('../src/views/newsView');
-const NewsModel = require('./newsModel');
-
+const NewsView = require('../src/newsView');
+const NewsModel = require('../src/newsModel');
 /*
-Makes fetch available to our test (it is not by default). Normally fetch is only available withing the browser.
+Makes fetch available to our test (it is not by default). Normally fetch is only available within the browser.
 Will need to run: npm install --save- jest-fetch-mock
 */
 require('jest-fetch-mock').enableMocks();
 
+
 describe('NotesView', () => {
   
-
-  // beforeEach hook sets the jest 'document' HTML to a mock html webpage for the tests
   beforeEach(() => {
-    document.body.innerHTML = fs.readFileSync('./index.html');
-  })
+    document.body.innerHTML = fs.readFileSync('../index.html'); // sets the jest 'document' HTML to a mock html webpage for the tests
+    model = new NewsModel();
+    view = new NewsView(model, clientMock);
+  });
   
-
-  it('calls getNewsInfo from client class, gets response, and sets the info on the model', () => {
-    const model = new NewsModel();
-    // create the mock
-    const clientMock = {
-      getNewsInfo: (callback) => {
-        callback('this is a test article title');
-      }
-    };
-
-    const view = new NewsView(model, clientMock);
-    view.displayArticlesFromApi();
-
-    expect(document.querySelector('div.note').textContent).toBe('this is a test article title');
+  it('fetches the mock a passes through the news data', (done) => {
+    fetch.mockResponseOnce(JSON.stringify(['some news data']))
+    client.getNewsInfo('news', (newsData) => {
+      expect(newsData).toEqual(['some news data']);
+      done();
+    });
   });
 });

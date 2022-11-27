@@ -1,4 +1,5 @@
 class NewsModel {
+  
   constructor() {
     this.articleInfo = [];
   }

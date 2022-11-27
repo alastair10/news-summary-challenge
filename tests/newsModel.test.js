@@ -1,9 +1,13 @@
-const NewsModel = require('../src/models/newsModel');
+const NewsModel = require('../src/newsModel');
 
 describe('getArticleInfo', () => {
-  it('returns no article info', () => {
-    const model = new NewsModel();
-    expect(model.getArticleInfo()).toEqual(null);
-  })
+  
+  beforeEach(() => {
+    model = new NewsModel();
+  });
+  
+  it('initially it returns no articles - an empty array', () => {
+    // const model = new NewsModel();
+    expect(model.getArticleInfo()).toEqual([]);
+  });
 })
-
