@@ -1,4 +1,4 @@
-const NewsClient = require('./newsClient');
+const NewsClient = require('../newsClient');
 
 /*
 Makes fetch available to our test (it is not by default). Normally fetch is only available withing the browser.
