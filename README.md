@@ -3,9 +3,10 @@
 This single page web app uses the Guardian newspaper API to allow users to search for news articles. The API grabs 10 news headlines and display them on the page. Clicking on a headline will link the user to the actual article page on the Guardian's website.
 
 ### Screenshots
-
+Homepage
 ![Initial page](./images/initial_page.png)
 
+Search results
 ![Search results](./images/search_results.png)
 
 ### Technologies
