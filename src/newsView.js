@@ -5,6 +5,7 @@ class NewsView {
     
     this.mainContainerEl = document.querySelector('#main-container');  // define main container el
 
+    // User input and button setup
     const submitButtonEl = document.querySelector('#submit-button');
     const subjectInputEl = document.querySelector('#subject-input');
 
@@ -20,6 +21,9 @@ class NewsView {
 
   // QUESTION: Why set it via the model first? Can go straight into display...?
   displayArticles() {
+    // Clears the previous results
+    this.clearArticles();
+
     // gets all the article info
     const articles = this.model.getArticleInfo();
     console.log(articles);
@@ -34,17 +38,36 @@ class NewsView {
     // = append the new elements to end of the container
 
     articles.forEach(article => {
-      // const imageEl = document.createElement('img');
-      // imageEl.src = articles['thumbnail'];
-      // this.mainContainerEl.append(imageEl);
+      // Set a space
+      const spacer = document.createElement('br');
+      this.mainContainerEl.append(spacer);
 
+      // Set the image
+      const imageEl = document.createElement('img');
+      imageEl.src = article.fields.thumbnail;
+      imageEl.className = 'image'
+      this.mainContainerEl.append(imageEl);
+      this.mainContainerEl.append(spacer);
+
+      // Set the headline (w/url)
       const titleEl = document.createElement('a');
       titleEl.textContent = article.fields.headline;
       titleEl.href = article.webUrl;
+      titleEl.className = 'title'
       this.mainContainerEl.append(titleEl);
       console.log(titleEl.textContent);
     });
   }
+
+  clearArticles() {
+    document.querySelectorAll('br').forEach(break => break.remove());
+    document.querySelectorAll('img').forEach(image => image.remove());
+    document.querySelectorAll('a').forEach(title => title.remove());
+  }
+
+
+
+
 };
 
 module.exports = NewsView;

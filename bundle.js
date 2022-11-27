@@ -64,15 +64,29 @@
           });
         }
         displayArticles() {
+          this.clearArticles();
           const articles = this.model.getArticleInfo();
           console.log(articles);
           articles.forEach((article) => {
+            const spacer = document.createElement("br");
+            this.mainContainerEl.append(spacer);
+            const imageEl = document.createElement("img");
+            imageEl.src = article.fields.thumbnail;
+            imageEl.className = "image";
+            this.mainContainerEl.append(imageEl);
+            this.mainContainerEl.append(spacer);
             const titleEl = document.createElement("a");
             titleEl.textContent = article.fields.headline;
             titleEl.href = article.webUrl;
+            titleEl.className = "title";
             this.mainContainerEl.append(titleEl);
             console.log(titleEl.textContent);
           });
+        }
+        clearArticles() {
+          document.querySelectorAll("br").forEach((image) => image.remove());
+          document.querySelectorAll("img").forEach((image) => image.remove());
+          document.querySelectorAll("a").forEach((title) => title.remove());
         }
       };
       module.exports = NewsView2;
