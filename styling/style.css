@@ -1,0 +1,39 @@
+h1, p, * {
+  font-family: sans-serif;
+}
+
+html {
+  background:#303030;
+}
+
+body {
+  background: white;
+  width: 900px;
+  margin: auto;
+  margin-top: 10px;
+  padding: 20px;
+  border-radius: 10px;
+}
+
+/* .note {
+  border-bottom: 1px solid #aaa;
+  padding: 15px;
+} */
+
+input[type=text] {
+  width: 80%;
+  background: #fefefe;
+  border-radius: 4px;
+  padding: 8px 8px;
+  border: 1px solid #444;
+  font-size: 12px;
+}
+
+button {
+  background: #cccdcc;
+  border-radius: 4px;
+  padding: 8px 8px;
+  border: 1px solid #444;
+  font-size: 12px;
+  cursor: pointer;
+}

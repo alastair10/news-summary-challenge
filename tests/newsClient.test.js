@@ -1,4 +1,4 @@
-const NewsClient = require('../newsClient');
+const NewsClient = require('../src/newsClient');
 
 /*
 Makes fetch available to our test (it is not by default). Normally fetch is only available withing the browser.
@@ -7,7 +7,7 @@ Will need to run: npm install --save- jest-fetch-mock
 require('jest-fetch-mock').enableMocks();
 
 describe('NewsClient class', () => {
-  it('calls fetch and loads the news data', () => {
+  it('calls fetch and loads the news data', (done) => {
     // Instantiate the class
     const client = new NewsClient();
 
@@ -24,6 +24,7 @@ describe('NewsClient class', () => {
     // callback is called when a response is received
     client.getNewsInfo('At last, the inventors of modern skiing have something to cheer: Dave Ryding | Andy Bull', (newsInfo) => {
       expect(newsInfo.webTitle).toBe('At last, the inventors of modern skiing have something to cheer: Dave Ryding | Andy Bull');
+      done();
     })
   })
 })

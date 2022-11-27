@@ -36,38 +36,36 @@ class NewsView {
     // - create two new elements
     // - assign title and picture to elements
     // = append the new elements to end of the container
-
+    
     articles.forEach(article => {
-      // Set a space
-      const spacer = document.createElement('br');
-      this.mainContainerEl.append(spacer);
 
       // Set the image
       const imageEl = document.createElement('img');
       imageEl.src = article.fields.thumbnail;
-      imageEl.className = 'image'
+      imageEl.className = 'image';
       this.mainContainerEl.append(imageEl);
-      this.mainContainerEl.append(spacer);
+      this.mainContainerEl.append(document.createElement('br'));
 
       // Set the headline (w/url)
       const titleEl = document.createElement('a');
       titleEl.textContent = article.fields.headline;
       titleEl.href = article.webUrl;
-      titleEl.className = 'title'
+      titleEl.className = 'title';
       this.mainContainerEl.append(titleEl);
-      console.log(titleEl.textContent);
+
+      // Create a space
+      const spacer = document.createElement('p');
+      spacer.className = 'spacer'
+      this.mainContainerEl.append(spacer);
     });
   }
 
   clearArticles() {
-    document.querySelectorAll('br').forEach(break => break.remove());
     document.querySelectorAll('img').forEach(image => image.remove());
     document.querySelectorAll('a').forEach(title => title.remove());
+    document.querySelectorAll('spacer').forEach(space => space.remove());
+    document.querySelectorAll('br').forEach(lineBreak => lineBreak.remove());
   }
-
-
-
-
 };
 
 module.exports = NewsView;

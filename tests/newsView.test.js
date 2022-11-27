@@ -12,7 +12,7 @@ Will need to run: npm install --save- jest-fetch-mock
 */
 require('jest-fetch-mock').enableMocks();
 
-describe('NotesView', () {
+describe('NotesView', () => {
   
 
   // beforeEach hook sets the jest 'document' HTML to a mock html webpage for the tests

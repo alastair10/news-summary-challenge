@@ -20,7 +20,8 @@
           this.apiKey = apiKey2;
         }
         getNewsInfo(searchTerm, callback) {
-          fetch(`https://content.guardianapis.com/search?q=${searchTerm}&query-fields=headline&show-fields=thumbnail,headline,byline&order-by=newest&api-key=${apiKey2}`).then((response) => response.json()).then((data) => callback(data));
+          const url = `https://content.guardianapis.com/search?q=${searchTerm}&query-fields=headline&show-fields=thumbnail,headline,byline&order-by=newest&api-key=${apiKey2}`;
+          fetch(url).then((response) => response.json()).then((data) => callback(data));
         }
       };
       module.exports = NewsClient2;
@@ -68,25 +69,26 @@
           const articles = this.model.getArticleInfo();
           console.log(articles);
           articles.forEach((article) => {
-            const spacer = document.createElement("br");
-            this.mainContainerEl.append(spacer);
             const imageEl = document.createElement("img");
             imageEl.src = article.fields.thumbnail;
             imageEl.className = "image";
             this.mainContainerEl.append(imageEl);
-            this.mainContainerEl.append(spacer);
+            this.mainContainerEl.append(document.createElement("br"));
             const titleEl = document.createElement("a");
             titleEl.textContent = article.fields.headline;
             titleEl.href = article.webUrl;
             titleEl.className = "title";
             this.mainContainerEl.append(titleEl);
-            console.log(titleEl.textContent);
+            const spacer = document.createElement("p");
+            spacer.className = "spacer";
+            this.mainContainerEl.append(spacer);
           });
         }
         clearArticles() {
-          document.querySelectorAll("br").forEach((image) => image.remove());
           document.querySelectorAll("img").forEach((image) => image.remove());
           document.querySelectorAll("a").forEach((title) => title.remove());
+          document.querySelectorAll("spacer").forEach((space) => space.remove());
+          document.querySelectorAll("br").forEach((lineBreak) => lineBreak.remove());
         }
       };
       module.exports = NewsView2;
