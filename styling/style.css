@@ -15,11 +15,6 @@ body {
   border-radius: 10px;
 }
 
-/* .note {
-  border-bottom: 1px solid #aaa;
-  padding: 15px;
-} */
-
 input[type=text] {
   width: 40%;
   background: #fefefe;
